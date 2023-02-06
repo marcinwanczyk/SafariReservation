@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
-from .models import Note
+from .models import Note, Safari, Ticket, Reservation
 from . import db
-import json
+import json, datetime
 
 views = Blueprint('views', __name__)
 
@@ -35,3 +35,29 @@ def delete_note():
             db.session.commit()
 
     return jsonify({})
+
+# @views.route('/create_safari', methods=['POST'])
+# def create_safari():
+#     date_str = request.form['date_safari']
+#     date = datetime.strptime(date_str, '%Y-%m-%dT%H:%M')
+#     safari = Safari(date=date, type=request.form['type'], seats=request.form['seats'])
+#     db.session.add(safari)
+#     db.session.commit()
+#     return render_template("home.html", user=current_user)
+
+
+@views.route('/create-reservation', methods=['POST'])
+def create_reservation():
+    date_str = request.form['date_safari']
+    date = datetime.strptime(date_str, '%d-%m-%YT%H:%M')
+    safari= Safari(date = date, type = request.form['package2'])
+    ticket = Ticket(type = request.form['package1'], amount = request.form['package3'],
+     user_id=current_user.id)
+    reservation = Reservation(date = date )
+    db.session.add(safari)
+    db.session.add(ticket)
+    db.session.add(reservation)
+    db.session.commit
+    return render_template("home.html", user=current_user)
+# nie postuje wciaz
+
