@@ -1,13 +1,13 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
 %}
 <h1 align="center">Zarezerwuj Safari!</h1>
-<ul class="list-group list-group-flush" id="notes">
-  {% for note in user.notes %}
+<!-- <ul class="list-group list-group-flush" id="notes"> -->
+  <!-- {% for note in user.notes %} -->
   <li class="list-group-item">
-    {{ note.data }}
-    <button type="button" class="close" onClick="deleteNote({{ note.id }})">
-      <span aria-hidden="true">&times;</span>
-    </button>
+    <!-- {{ note.data }} -->
+    <!-- <button type="button" class="close" onClick="deleteNote({{ note.id }})"> -->
+      <!-- <span aria-hidden="true">&times;</span> -->
+    <!-- </button> -->
   </li>
   {% endfor %}
 </ul>
@@ -16,20 +16,50 @@
   <br />
   <div align="center">
     <h4>
-      Select Date:
+      Wybierz date:
       </h4>
-    <input type="datetime-local" id="Test_DatetimeLocal">
+    <input type="datetime-local" id="date_safari" name="date_safari">
     <h4>
-      Select Type:
+      Wybierz rodzaj ulgi:
+      </h4>
+      Normalny
+      <input type="radio" checked = "true" name="package1">
+      Ulgowy
+      <input type="radio"  name="package1"> 
+    <h4>
+      Wybierz typ safari:
       </h4>
         
-      Small Animals
-      <input type="radio" checked=true name="package">
-      Big Animals 
-      <input type="radio"  name="package">  
-      Full Safari
-      <input type="radio" name="package">
-    <!-- <button type="submit" class="btn btn-primary">Add Note</button> -->
+      Małe zwierzęta
+      <input type="radio" checked = "true" name="package2">
+      Duże zwierzęta 
+      <input type="radio"  name="package2">  
+      Full Pakiet
+      <input type="radio" name="package2">
+
+      <h4>
+        Wybierz ilość biletów:
+        </h4>
+
+        <input type="number" min="1" max="10" name="package3">
+
+      <div align="center"><button type="submit" class="btn btn-primary" >Rezerwuj Bilet</button>
+      </div>
   </div>
 </form>
+
+<body>
+  <h3>Reservations:</h3>
+  <br>
+  <table>
+     {% for data in reservations %}
+     <tbody>
+        <td>{{data.id}}</td>
+        <td>{{data.user_id}}</td>
+        <td>{{data.ticked_id}}</td>
+        <!-- <td>{{data.age}}</td> -->
+     </tbody>
+     {% endfor%}
+  </table>
+</body>
 {% endblock %}
