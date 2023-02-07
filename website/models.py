@@ -6,11 +6,13 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 class Reservation(db.Model):
+    __tablename__ = 'reservation'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     ticket_id = db.Column(db.Integer, db.ForeignKey('ticket.id'))
     guide_id = db.Column(db.Integer, db.ForeignKey('guide.id'))
     safari_id = db.Column(db.Integer, db.ForeignKey('safari.id'))
+    # date = db.Column(db.DateTime)
     tickets = db.relationship('Ticket')
     users = db.relationship('User')
     #guides = db.relationship('Guide')
@@ -19,6 +21,7 @@ class Reservation(db.Model):
     
 
 class Safari(db.Model):
+    __tablename__ = 'safari'
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime)
     type = db.Column(db.String(15000))
@@ -26,11 +29,13 @@ class Safari(db.Model):
     
 
 class Guide(db.Model):
+    __tablename__  = 'guide'
     id = db.Column(db.Integer, primary_key=True)
     guide_name = db.Column(db.String(1500))
     surname = db.Column(db.String(1500))
 
 class User(db.Model, UserMixin):
+    __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
@@ -42,6 +47,7 @@ class User(db.Model, UserMixin):
 
 
 class Ticket(db.Model):
+    __tablename__ = 'ticket'
     id = db.Column(db.Integer, primary_key =True)
     # price = db.Column(db.Integer,)
     amount = db.Column(db.Integer)

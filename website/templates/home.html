@@ -3,7 +3,6 @@
 <h1 align="center">Zarezerwuj Safari!</h1>
 
 <form  action="/create-reservation" method="POST">
-  <!-- <textarea name="note" id="note" class="form-control"></textarea> -->
   <br />
   <div align="center">
     <h4>
@@ -36,24 +35,37 @@
          
         
         <input type="submit" value="rezerwuj"/>
-      
-        <!-- <div align="center"><button type="submit" class="btn btn-primary" >Rezerwuj Bilet</button> -->
-      <!-- </div> -->
   </div>
 </form>
 
 <body>
-  <h3>Reservations:</h3>
+  <h3>Reservations</h3>
+  <a href="/home"></a>
   <br>
   <table>
-     {% for data in reservations %}
+    <thead>
+      <th style="border: 1px solid black;">Id</th>
+      <th style="border: 1px solid black;">userID</th>
+      <th style="border: 1px solid black;">safariID</th>
+      <th style="border: 1px solid black;">ticketID</th>
+      <th style="border: 1px solid black;">Date</th>
+      <th style="border: 1px solid black;">sumPrice</th>
+      <th style="border: 1px solid black;">#</th>
+   </thead>
+     {% for reservation in reservations %}
      <tbody>
-        <td>{{data.id}}</td>
-        <td>{{data.user_id}}</td>
-        <td>{{data.ticked_id}}</td>
-        <!-- <td>{{data.age}}</td> -->
+        <td style="border: 1px solid black;">{{reservation.id}}</td>
+        <td style="border: 1px solid black;">{{reservation.user_id}}</td>
+        <td style="border: 1px solid black;">{{reservation.safari_id}}</td>
+        <td style="border: 1px solid black;">{{reservation.ticket_id}}</td>
+        <td style="border: 1px solid black;">{{reservation.safari.date}}</td>
+        <td style="border: 1px solid black;">
+          <form action="{{ url_for('views.delete_reservation', id=reservation.id) }}" method="post">
+            <input type="submit" value="Delete">
+        </form>
+        </td>
      </tbody>
      {% endfor%}
-  </table>
+    </table>
 </body>
 {% endblock %}
