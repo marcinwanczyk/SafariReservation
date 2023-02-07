@@ -1,16 +1,7 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
 %}
 <h1 align="center">Zarezerwuj Safari!</h1>
-<!-- <ul class="list-group list-group-flush" id="notes"> -->
-  <!-- {% for note in user.notes %} -->
-  <li class="list-group-item">
-    <!-- {{ note.data }} -->
-    <!-- <button type="button" class="close" onClick="deleteNote({{ note.id }})"> -->
-      <!-- <span aria-hidden="true">&times;</span> -->
-    <!-- </button> -->
-  </li>
-  {% endfor %}
-</ul>
+
 <form  action="/create-reservation" method="POST">
   <!-- <textarea name="note" id="note" class="form-control"></textarea> -->
   <br />
@@ -23,25 +14,25 @@
       Wybierz rodzaj ulgi:
       </h4>
       Normalny
-      <input type="radio" checked = "true" name="package1">
+      <input type="radio" checked = "true" name="package1" value="full">
       Ulgowy
-      <input type="radio"  name="package1"> 
+      <input type="radio"  name="package1" value="reduced"> 
     <h4>
       Wybierz typ safari:
       </h4>
         
       Małe zwierzęta
-      <input type="radio" checked = "true" name="package2">
+      <input type="radio" checked = "true" name="package2" value="small">
       Duże zwierzęta 
-      <input type="radio"  name="package2">  
+      <input type="radio"  name="package2" value="big">  
       Full Pakiet
-      <input type="radio" name="package2">
+      <input type="radio" name="package2" value="all">
 
       <h4>
         Wybierz ilość biletów:
         </h4>
 
-        <input type="number" min="1" max="10" name="package3">
+        <input type="number" min="1" max="10" name="package3" value="1">
          
         
         <input type="submit" value="rezerwuj"/>

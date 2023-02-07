@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, jsonify, redirect
 from flask_login import login_required, current_user
-from .models import Note, Safari, Ticket, Reservation
+from .models import Safari, Ticket, Reservation
 from . import db
 import json, datetime
 
@@ -51,15 +51,15 @@ def home():
 
 @views.route('/create-reservation', methods=['POST'])
 def create_reservation():
-    # date_str = request.form.get("date_safari")
-    # date = datetime.datetime.strptime(date_str, '%Y-%m-%dT%H:%M')
+    print("DANE: ", request.form)
+    date_str = request.form.get("date_safari")
+    date = datetime.datetime.strptime(date_str, '%Y-%m-%dT%H:%M')
     # date = datetime.datetime.stri
-    # safari= Safari(date = date, type = request.form.get("package2"))
+    safari= Safari(date = date, type = request.form.get("package2"))
     ticket = Ticket(type = request.form.get("package1"), amount = request.form.get("package3"))
-    # reservation = Reservation(date = date)
-    # db.session.add(safari)
+    reservation = Reservation(safari=safari, tickets=ticket, users=current_user)
     db.session.add(ticket)
-    # db.session.add(reservation)
+    db.session.add(reservation)
     db.session.commit()
  #GENERALNIE TO PROBLEM OD POCZATKU JEST Z TYM KONTROLEREM, Z DATĄ BYL PROBLEM I ZA NULLA BIERZE DATE,
  #JAK USUNALEM DATE, TO DALEJ NIE POSTUJE, W AKTUALNYM STANEI MOGE PRZEZ POSTMANA POSTA ZROBIC "package3": "4", ALE PRZYCISK NIE REAGUJE
