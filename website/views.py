@@ -12,32 +12,32 @@ views = Blueprint('views', __name__)
 def home():
     # wszystko co zwiazane z note nie brane pod uwage do projektu
     # if request.method == 'POST': 
-        # note = request.form.get('note')#Gets the note from the HTML 
+    #     note = request.form.get('note')#Gets the note from the HTML 
 
-        # if len(note) < 1:
-            # flash('Note is too short!', category='error') 
-        # else:
-            # new_note = Note(data=note, user_id=current_user.id)  #providing the schema for the note 
-            # db.session.add(new_note) #adding the note to the database 
-            # db.session.commit()
-            # flash('Note added!', category='success')
+    #     if len(note) < 1:
+    #         flash('Note is too short!', category='error') 
+    #     else:
+    #         new_note = Note(data=note, user_id=current_user.id)  #providing the schema for the note 
+    #         db.session.add(new_note) #adding the note to the database 
+    #         db.session.commit()
+    #         flash('Note added!', category='success')
 
-    reservations = Reservation.query.all()
+    # reservations = Reservation.query.all()
     # return render_template('home.html', reservations=reservations)
     return render_template("home.html", user=current_user)
 
 
 # @views.route('/delete-note', methods=['POST'])
 # def delete_note():  
-    # note = json.loads(request.data) # this function expects a JSON from the INDEX.js file 
-    # noteId = note['noteId']
-    # note = Note.query.get(noteId)
-    # if note:
-        # if note.user_id == current_user.id:
-            # db.session.delete(note)
-            # db.session.commit()
+#     note = json.loads(request.data) # this function expects a JSON from the INDEX.js file 
+#     noteId = note['noteId']
+#     note = Note.query.get(noteId)
+#     if note:
+#         if note.user_id == current_user.id:
+#             db.session.delete(note)
+#             db.session.commit()
 
-    # return jsonify({})
+#     return jsonify({})
 
 # @views.route('/create_safari', methods=['POST'])
 # def create_safari():
@@ -55,7 +55,7 @@ def create_reservation():
     # date = datetime.datetime.strptime(date_str, '%Y-%m-%dT%H:%M')
     # date = datetime.datetime.stri
     # safari= Safari(date = date, type = request.form.get("package2"))
-    ticket = Ticket(type = request.form.get("package3"), amount = request.form.get("package3"))
+    ticket = Ticket(type = request.form.get("package1"), amount = request.form.get("package3"))
     # reservation = Reservation(date = date)
     # db.session.add(safari)
     db.session.add(ticket)
