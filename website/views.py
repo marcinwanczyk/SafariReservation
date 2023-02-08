@@ -15,6 +15,9 @@ def home():
     reservations = Reservation.query.filter_by(user_id = user_id)
     return render_template("home.html", user=current_user, reservations = reservations)
 
+
+#PRZY ZMIANIE TYPU SAFARI NIE ZMEINIA SIE SAFARI ID --> NIE MA ROZROZNIENIA POMIEDZY SAFARI TYPE
+#WIEC MIEJSCA SA USUWANE/ODDAWANE DLA JEDNEGO WPISU NIEZALEZENIE OD TYPU, DO ZROBIENIA!!!
 @views.route('/create-reservation', methods=['POST'])
 def create_reservation():
     print("DANE: ", request.form)
