@@ -26,8 +26,6 @@ class Safari(db.Model):
     date = db.Column(db.DateTime)
     type = db.Column(db.String(15000))
     seats = db.Column(db.Integer, nullable = False, default = 20)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    users = db.relationship('User')
     
 
 class Guide(db.Model):
@@ -56,4 +54,5 @@ class Ticket(db.Model):
     type = db.Column(db.String(150))
     ticket_date = db.Column(db.String(150), db.ForeignKey('safari.date'))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    users = db.relationship('User')
 
