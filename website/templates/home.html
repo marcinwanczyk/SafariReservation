@@ -1,14 +1,11 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
 %}
+
 <h1 align="center">Zarezerwuj Safari!</h1>
 
 <form  action="/create-reservation" method="POST">
   <br />
   <div align="center">
-    <h4>
-      Wybierz date:
-      </h4>
-    <input type="datetime-local" id="date_safari" name="date_safari" value="2018-06-12T19:30">
     <h4>
       Wybierz rodzaj ulgi:
       </h4>
@@ -16,6 +13,18 @@
       <input type="radio" checked = "true" name="package1" value="full">
       Ulgowy
       <input type="radio"  name="package1" value="reduced"> 
+
+      <h4>
+        Wybierz typ safari:
+      </h4>
+      
+      Małe zwierzęta
+      <input type="radio" checked = "true" name="package2" value="small">
+      Duże zwierzęta 
+      <input type="radio"  name="package2" value="big">  
+      Full Pakiet
+      <input type="radio" name="package2" value="all">
+  
     <h4>
       Wybierz typ safari:
       </h4>
@@ -26,6 +35,11 @@
       <input type="radio"  name="package2" value="big">  
       Full Pakiet
       <input type="radio" name="package2" value="all">
+ 
+      <h4>
+        Wybierz date:
+        </h4>
+      <input type="datetime-local" id="date_safari" name="date_safari" value="2018-06-12T19:30">
 
       <h4>
         Wybierz ilość biletów:
@@ -50,7 +64,7 @@
       <th style="border: 1px solid black;">ticketID</th>
       <th style="border: 1px solid black;">Date</th>
       <th style="border: 1px solid black;">sumPrice</th>
-      <th style="border: 1px solid black;">#</th>
+      <!-- <th style="border: 1px solid black;">#</th> -->
    </thead>
      {% for reservation in reservations %}
      <tbody>
@@ -59,6 +73,7 @@
         <td style="border: 1px solid black;">{{reservation.safari_id}}</td>
         <td style="border: 1px solid black;">{{reservation.ticket_id}}</td>
         <td style="border: 1px solid black;">{{reservation.safari.date}}</td>
+        <td style="border: 1px solid black;">{{reservation.sum_price}}</td>
         <td style="border: 1px solid black;">
           <form action="{{ url_for('views.delete_reservation', id=reservation.id) }}" method="post">
             <input type="submit" value="Delete">

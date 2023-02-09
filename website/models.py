@@ -12,11 +12,13 @@ class Reservation(db.Model):
     ticket_id = db.Column(db.Integer, db.ForeignKey('ticket.id'))
     guide_id = db.Column(db.Integer, db.ForeignKey('guide.id'))
     safari_id = db.Column(db.Integer, db.ForeignKey('safari.id'))
+    sum_price = db.Column(db.Integer)
     # date = db.Column(db.DateTime)
     tickets = db.relationship('Ticket')
     users = db.relationship('User')
     #guides = db.relationship('Guide')
     safari = db.relationship('Safari')
+    
 
     
 
@@ -49,7 +51,7 @@ class User(db.Model, UserMixin):
 class Ticket(db.Model):
     __tablename__ = 'ticket'
     id = db.Column(db.Integer, primary_key =True)
-    # price = db.Column(db.Integer,)
+    price = db.Column(db.Integer)
     amount = db.Column(db.Integer)
     type = db.Column(db.String(150))
     ticket_date = db.Column(db.String(150), db.ForeignKey('safari.date'))
