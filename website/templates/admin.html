@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% block title %}Admin{% endblock %} {% block content
+%}
+
+<body>
+    <h3>Reservations</h3>
+    <a href="/admin"></a>
+    <br>
+    <table>
+      <thead>
+        <th style="border: 1px solid black;">Id</th>
+        <th style="border: 1px solid black;">userID</th>
+        <th style="border: 1px solid black;">safariID</th>
+        <th style="border: 1px solid black;">ticketID</th>
+        <th style="border: 1px solid black;">Date</th>
+        <th style="border: 1px solid black;">sumPrice</th>
+        <!-- <th style="border: 1px solid black;">#</th> -->
+     </thead>
+       {% for reservation in reservations %}
+       <tbody>
+          <td style="border: 1px solid black;">{{reservation.id}}</td>
+          <td style="border: 1px solid black;">{{reservation.user_id}}</td>
+          <td style="border: 1px solid black;">{{reservation.safari_id}}</td>
+          <td style="border: 1px solid black;">{{reservation.ticket_id}}</td>
+          <td style="border: 1px solid black;">{{reservation.safari.date}}</td>
+          <td style="border: 1px solid black;">{{reservation.sum_price}}</td>
+          <td style="border: 1px solid black;">
+            <form action="{{ url_for('views.delete_reservation', id=reservation.id) }}" method="post">
+              <input type="submit" value="Delete">
+          </form>
+          </td>
+       </tbody>
+       {% endfor%}
+      </table>
+  </body>
+  {% endblock %}
+      

@@ -65,3 +65,9 @@ def delete_reservation(id):
     db.session.commit()
     return redirect('/')
 
+@views.route('/admin', methods=['GET', 'POST'])
+def admin():
+    reservations = Reservation.query.all()
+    user_id = current_user.id
+    return render_template('admin.html',user = current_user, reservations=reservations)
+
