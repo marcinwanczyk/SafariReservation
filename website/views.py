@@ -16,24 +16,16 @@ def home():
     return render_template("home.html", user=current_user, reservations = reservations)
 
 
+#PRZY ZMIANIE TYPU SAFARI NIE ZMEINIA SIE SAFARI ID --> NIE MA ROZROZNIENIA POMIEDZY SAFARI TYPE
+#WIEC MIEJSCA SA USUWANE/ODDAWANE DLA JEDNEGO WPISU NIEZALEZENIE OD TYPU, DO ZROBIENIA!!!
 @views.route('/create-reservation', methods=['POST'])
 def create_reservation():
     print("DANE: ", request.form)
     date_str = request.form.get("date_safari")
     date = datetime.datetime.strptime(date_str, '%Y-%m-%dT%H:%M')
-    type = request.form.get("package2")
-    safari = Safari.query.filter_by(date=date, type=type).first()
-
-    ticket_type = request.form.get("package1")
-
-    if ticket_type == "full":
-        price = 100
-    elif ticket_type == "reduced":
-        price = 50
-    
-
-    ticket = Ticket(type = ticket_type , amount = request.form.get("package3"),
-                    ticket_date = date, users = current_user, price = int(price))
+    safari = Safari.query.filter_by(date=date).first()
+    ticket = Ticket(type = request.form.get("package1"), amount = request.form.get("package3"),
+                    ticket_date = date, users = current_user)
 
     if safari:
         if safari.seats >= int(request.form.get("package3")):
@@ -56,7 +48,7 @@ def create_reservation():
         safari.seats = 20 - int(ticket.amount)
         db.session.add(safari)
 
-    reservation = Reservation(safari=safari, tickets=ticket, users=current_user, sum_price = (int(ticket.amount) * int(ticket.price)))
+    reservation = Reservation(safari=safari, tickets=ticket, users=current_user)
     db.session.add(ticket)
     db.session.add(reservation)
     db.session.commit()   
