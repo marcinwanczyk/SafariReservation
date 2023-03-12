@@ -10,7 +10,7 @@ DB_NAME = "C:\\Users\\Marcin\\Desktop\\github\\SafariReservation\\instance\\data
 
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = '8d907asdadlk;asj1321'
+    app.config['SECRET_KEY'] = 'hellotherethisisthepsswd'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     db.init_app(app)
 
