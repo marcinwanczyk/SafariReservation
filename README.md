@@ -4,11 +4,11 @@ In this app after registering your account you can create a reservation for your
 Two panels: USER, ADMIN.<br>
 Admin has vision on the actual reservation list, and can do manual changes(CRUD) on user entries affecting the db.
 
-# Technologies
+# Technologies:
 Flask<br>
 SQLite
 
-# How to run
-1. Install sqlite
+# How to run:
+1. Install SQLite
 2. Run main.py
 3. Go to your localhost
